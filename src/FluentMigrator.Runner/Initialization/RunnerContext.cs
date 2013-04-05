@@ -24,6 +24,7 @@ namespace FluentMigrator.Runner.Initialization
         public int Timeout { get; set; }
         public string ConnectionStringConfigPath { get; set; }
         public IEnumerable<string> Tags { get; set; }
+        public string ProviderSwitches { get; set; }
 
         public IAnnouncer Announcer
         {

@@ -49,6 +49,7 @@ namespace FluentMigrator.Console
         public bool Verbose;
         public long Version;
         public string WorkingDirectory;
+        public string ProviderSwitches;
 
         public RunnerContext RunnerContext { get; private set;}
 
@@ -158,6 +159,11 @@ namespace FluentMigrator.Console
                                             "tag=",
                                             "Filters the migrations to be run by tag.",
                                             v => { Tags.Add(v); }
+                                            },
+                                        {
+                                            "providerswitches=",
+                                            "Provider specific switches",
+                                            v => { ProviderSwitches = v; }
                                             },
                                         {
                                             "help|h|?",
@@ -278,7 +284,8 @@ namespace FluentMigrator.Console
                 Timeout = Timeout,
                 ConnectionStringConfigPath = ConnectionStringConfigPath,
                 ApplicationContext = ApplicationContext,
-                Tags = Tags
+                Tags = Tags,
+                ProviderSwitches = ProviderSwitches
             };
 
             new TaskExecutor(RunnerContext).Execute();

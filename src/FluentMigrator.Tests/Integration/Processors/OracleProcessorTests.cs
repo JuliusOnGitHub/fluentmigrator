@@ -76,10 +76,10 @@ namespace FluentMigrator.Tests.Integration.Processors
         }
 
         [Test]
-        public void CallingColumnExistsWithIncorrectCaseReturnsFalseIfColumnExists()
+        public void CallingColumnExistsWithIncorrectCaseReturnsTrueIfColumnExists()
         {
             using (var table = new OracleTestTable(Connection, Quoter, null, Quoter.QuoteColumnName("id") + " int"))
-                Processor.ColumnExists(null, table.Name, "ID").ShouldBeFalse();
+                Processor.ColumnExists(null, table.Name, "Id").ShouldBeTrue();
         }
 
         [Test]
@@ -140,12 +140,12 @@ namespace FluentMigrator.Tests.Integration.Processors
         }
 
         [Test]
-        public void CallingConstraintExistsWithIncorrectCaseReturnsFalseIfConstraintExists()
+        public void CallingConstraintExistsWithIncorrectCaseReturnsTrueIfConstraintExists()
         {
             using (var table = new OracleTestTable(Connection, Quoter, null, Quoter.QuoteColumnName("id") + " int"))
             {
                 table.WithUniqueConstraintOn("id");
-                Processor.ConstraintExists(null, table.Name, "UC_ID").ShouldBeFalse();
+                Processor.ConstraintExists(null, table.Name, "UC_ID").ShouldBeTrue();
             }
         }
 
@@ -194,12 +194,12 @@ namespace FluentMigrator.Tests.Integration.Processors
         }
 
         [Test]
-        public void CallingIndexExistsWithIncorrectCaseReturnsFalseIfIndexExist()
+        public void CallingIndexExistsWithIncorrectCaseReturnsTrueIfIndexExist()
         {
             using (var table = new OracleTestTable(Connection, Quoter, null, Quoter.QuoteColumnName("id") + " int"))
             {
                 table.WithIndexOn("id");
-                Processor.IndexExists(null, table.Name, "UI_ID").ShouldBeFalse();
+                Processor.IndexExists(null, table.Name, "UI_ID").ShouldBeTrue();
             }
         }
 
